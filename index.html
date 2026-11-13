@@ -261,6 +261,7 @@ footer b{font-family:var(--display);letter-spacing:.06em;color:var(--night-ink)}
         <h3 id="price-title">Precio</h3>
         <div class="kv"><span>Semillave</span><b id="p-semi"></b></div>
         <div class="kv"><span>Llave en mano</span><b id="p-llave"></b></div>
+        <p class="note" id="p-sinimp"></p>
         <p class="note" style="margin-top:8px">Precio en pesos con IVA, puesto en Neuquén, Plottier, Centenario o Cipolletti, con platea, flete y montaje. No incluye el lote ni las conexiones a las redes de agua, luz, gas y cloaca. Vigente hasta la fecha indicada; luego se actualiza por el índice de costo de la construcción (CAC).</p>
         <div class="row" style="margin-top:10px"><a class="btn btn--pine" href="#contacto" id="want-model">Quiero este modelo</a><a class="btn btn--line" href="#cuotas">Ver cuotas</a></div>
       </div>
@@ -407,6 +408,7 @@ const CONFIG = {
   validez: "Precios válidos hasta [FECHA]",
   plazoDias: "[PLAZO]",
   tna: 0.30,                         // tasa nominal anual del plan propio
+  ivaVenta: 0.105,                  // IVA incluido en los precios (10,5% vivienda; si el contador define 21%, cambiar acá)
   ivaIntereses: 0.105,               // IVA sobre intereses (sigue al bien; validar con contador)
   tasaUva: 0.10,                     // tasa real anual sobre UVA de los planes indexados
   efectivoMin: 0.15,                 // anticipo mínimo en efectivo (sobre el precio)
@@ -454,6 +456,7 @@ const CONFIG = {
 /* =================================================================================== */
 
 const $ = (id) => document.getElementById(id);
+const sinImp = (v) => v / (1 + CONFIG.ivaVenta);
 const ars = (v) => "$ " + Math.round(v).toLocaleString("es-AR");
 const pct = (v) => (v * 100).toFixed(1).replace(".", ",") + "%";
 const state = { model: "refugio", mod: "llave", plan: 2, sel: {} };
@@ -526,7 +529,7 @@ function renderConfig() {
   ch.forEach((it) => { const v = lineTotal(it, m); add(itemLabel(it), (v < 0 ? "− " : "+ ") + ars(Math.abs(v))); });
   const tot = configTotal(m);
   $("s-total").textContent = ars(tot);
-  $("s-m2").textContent = `${ars(tot / m.m2)} por m² · IVA incluido`;
+  $("s-m2").textContent = `${ars(tot / m.m2)} por m² · IVA incluido · Precio sin impuestos nacionales: ${ars(sinImp(tot))}`;
 }
 
 function cuotaFija(saldo, tna, n) { const i = tna / 12; return i > 0 ? saldo * i / (1 - Math.pow(1 + i, -n)) : saldo / n; }
@@ -580,7 +583,7 @@ function renderCards() {
        <p class="spec">${m.dorm} · ${m.banos} · ${m.medidas}</p>
        <p class="para">${m.para}</p>
        <div class="price"><small>${state.mod === "llave" ? "Llave en mano" : "Semillave"}, puesta en tu lote</small><b>${ars(price)}</b>
-       <small>IVA incluido · ${ars(price / m.m2)} por m²</small></div>`;
+       <small>IVA incluido · ${ars(price / m.m2)} por m²</small><small>Precio sin impuestos nacionales: ${ars(sinImp(price))}</small></div>`;
     const b = document.createElement("button");
     b.type = "button"; b.className = "btn " + (sel ? "btn--pine" : "btn--line");
     b.textContent = sel ? "Seleccionado" : "Ver planta y precio";
@@ -608,6 +611,7 @@ function renderDetail() {
   });
   $("plan-note").textContent = `Esquema orientativo, sin escala exacta. ${m.medidas}, ${m.m2} m² cubiertos.`;
   $("p-semi").textContent = ars(m.semi); $("p-llave").textContent = ars(m.llave);
+  $("p-sinimp").textContent = `Precio sin impuestos nacionales: semillave ${ars(sinImp(m.semi))} · llave en mano ${ars(sinImp(m.llave))}.`;
 }
 
 function parseNum(v) { return Number(String(v || "").replace(/[^0-9]/g, "")) || 0; }
