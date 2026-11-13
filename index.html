@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RAÍZ Viviendas Industrializadas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Viviendas industrializadas de entramado de madera, fabricadas en planta y montadas en tu lote en Neuquén, Plottier, Centenario y Cipolletti. Tres modelos, precio cerrado y cuotas propias.">
+<meta property="og:title" content="RAÍZ · Viviendas industrializadas en la Confluencia">
+<meta property="og:description" content="Nido 36 m², Refugio 50 m² y Familia 68 m². Semillave o llave en mano, con platea, flete y montaje.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: banded single page — light bands alternate with one dark "llave en mano" band; content in a 1200px column */
+:root{
+  --ground:#F2F3EF; --surface:#FFFFFF; --surface-2:#F7F8F5; --ink:#16201E; --ink-2:#3B4643; --muted:#4F5A57;
+  --line:#D5D9D3; --field:#B3BBB4; --pine:#2E6A4E; --pine-ink:#FFFFFF; --pine-hover:#245A41;
+  --night:#16201E; --night-ink:#F2F3EF; --night-muted:#C5CCC7; --night-line:#3A4744; --amber:#E0A23A; --amber-ink:#16201E;
+  --room:#FFFFFF; --room-wet:#E3EAE3; --wall:#16201E; --hatch-a:#E3E6E0; --hatch-b:#EBEDE8;
+  --display:"Archivo","Archivo Narrow","Helvetica Neue",Arial,sans-serif;
+  --text:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ground:#111816; --surface:#18211F; --surface-2:#1C2623; --ink:#EEF1EC; --ink-2:#C9D0CB; --muted:#A7B1AC;
+  --line:#2C3835; --field:#4A5753; --pine:#5FB089; --pine-ink:#0D1513; --pine-hover:#78C39E;
+  --night:#0B100F; --night-ink:#EEF1EC; --night-muted:#B9C2BD; --night-line:#2C3835; --amber:#E8B04F; --amber-ink:#0D1513;
+  --room:#22302C; --room-wet:#2A3B36; --wall:#EEF1EC; --hatch-a:#1C2623; --hatch-b:#212C29; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ground:#111816; --surface:#18211F; --surface-2:#1C2623; --ink:#EEF1EC; --ink-2:#C9D0CB; --muted:#A7B1AC;
+  --line:#2C3835; --field:#4A5753; --pine:#5FB089; --pine-ink:#0D1513; --pine-hover:#78C39E;
+  --night:#0B100F; --night-ink:#EEF1EC; --night-muted:#B9C2BD; --night-line:#2C3835; --amber:#E8B04F; --amber-ink:#0D1513;
+  --room:#22302C; --room-wet:#2A3B36; --wall:#EEF1EC; --hatch-a:#1C2623; --hatch-b:#212C29; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--text);font-size:16px;line-height:1.55;margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{padding-block:72px}
+.band--surface{background:var(--surface);border-block:1px solid var(--line)}
+.band--night{background:var(--night);color:var(--night-ink)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-0.01em}
+h1{font-weight:800;font-stretch:88%;font-size:clamp(40px,6vw,76px);line-height:1}
+h2{font-weight:800;font-stretch:90%;font-size:clamp(30px,3.8vw,46px);line-height:1.06}
+h3{font-weight:700;font-size:22px;line-height:1.2}
+p{margin:0}
+.lead{font-size:18px;color:var(--ink-2);max-width:62ch}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--pine)}
+.stack{display:flex;flex-direction:column;gap:16px}
+.row{display:flex;flex-wrap:wrap;gap:16px}
+a{color:var(--pine)} a:hover{color:var(--pine-hover)}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--ground);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--ground)}
+.nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px 28px;padding-block:14px}
+.brand{font-family:var(--display);font-weight:800;font-size:26px;letter-spacing:.06em;color:var(--ink);text-decoration:none;display:flex;align-items:baseline;gap:10px}
+.brand small{font-family:var(--text);font-weight:500;font-size:13px;letter-spacing:.02em;color:var(--muted)}
+.nav-links{display:flex;flex-wrap:wrap;gap:4px 22px;flex:1 1 320px}
+.nav-links a{color:var(--ink);text-decoration:none;font-size:15px;padding-block:10px}
+.nav-links a:hover{color:var(--pine)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border-radius:6px;font:600 16px/1 var(--text);text-decoration:none;cursor:pointer;border:1px solid transparent}
+.btn--pine{background:var(--pine);color:var(--pine-ink)} .btn--pine:hover{background:var(--pine-hover);color:var(--pine-ink)}
+.btn--ink{background:var(--ink);color:var(--ground)} .btn--ink:hover{background:var(--ink-2);color:var(--ground)}
+.btn--line{background:transparent;color:var(--ink);border-color:var(--ink)} .btn--line:hover{background:var(--surface);color:var(--ink)}
+.btn--amber{background:var(--amber);color:var(--amber-ink)} .btn--amber:hover{filter:brightness(1.05);color:var(--amber-ink)}
+
+/* hero */
+.hero{display:flex;flex-wrap:wrap;gap:48px;align-items:center;padding-block:64px 56px}
+.hero > div{flex:1 1 440px;min-width:0}
+.facts{display:flex;flex-wrap:wrap;gap:28px 40px;padding-top:20px;border-top:1px solid var(--line)}
+.fact b{display:block;font-family:var(--display);font-weight:800;font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums}
+.fact span{font-size:14px;color:var(--muted)}
+.photo{aspect-ratio:4/3;max-width:100%;border-radius:10px;border:1px solid var(--line);background:repeating-linear-gradient(135deg,var(--hatch-a) 0 14px,var(--hatch-b) 14px 28px);display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--muted);font-weight:500}
+/* wall section: the subject's own detail */
+.wall{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:12px;font-size:12px}
+.wall div{padding:10px 8px;min-height:84px;display:flex;align-items:flex-end;border-right:1px solid var(--line);color:var(--ink)}
+.wall div:last-child{border-right:0}
+
+/* segmented & chips */
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:0 18px;border-radius:999px;font:600 15px/1 var(--text);cursor:pointer;background:var(--surface);color:var(--ink);border:1px solid var(--field)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+
+/* model cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.card.is-sel{border:2px solid var(--pine);padding:25px}
+.card .top-line{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.card .m2{font-family:var(--display);font-weight:700;font-size:20px;color:var(--pine)}
+.card .spec{font-size:15px;color:var(--ink-2)}
+.card .para{font-size:15px;color:var(--ink-2);flex:1}
+.price{display:flex;flex-direction:column;gap:2px;padding-top:12px;border-top:1px solid var(--line)}
+.price small{font-size:13px;color:var(--muted)}
+.price b{font-family:var(--display);font-weight:800;font-size:34px;line-height:1.1;font-variant-numeric:tabular-nums}
+
+.detail{display:flex;flex-wrap:wrap;gap:40px;padding:28px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}
+.detail > div{flex:1 1 360px;min-width:0}
+.plan{display:grid;gap:3px;background:var(--wall);border:4px solid var(--wall);width:100%;max-width:560px}
+.plan div{background:var(--room);display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;font-size:13px;font-weight:600;color:var(--ink)}
+.plan div.wet{background:var(--room-wet)}
+.kv{display:flex;justify-content:space-between;gap:12px;padding-block:13px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.kv b{font-family:var(--display);font-size:20px}
+.note{font-size:13px;color:var(--muted)}
+
+/* includes */
+.twocol{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.box{padding:28px;border-radius:10px;display:flex;flex-direction:column;gap:12px}
+.box--light{background:var(--surface);border:1px solid var(--line)}
+.box--dark{background:var(--night);color:var(--night-ink)}
+.box--dark h3{color:var(--amber)}
+.box--dark p{color:var(--night-muted)}
+.box ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:7px;font-size:15px}
+
+/* process: real sequence */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px}
+.steps li{display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:3px solid var(--pine)}
+.steps .n{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.06em;color:var(--pine)}
+.steps strong{font-size:17px}
+.steps span{font-size:15px;color:var(--ink-2)}
+
+/* simulator */
+.sim{display:flex;flex-wrap:wrap;gap:40px}
+.sim > div{flex:1 1 360px;min-width:0}
+.ctl{display:flex;flex-direction:column;gap:8px}
+.ctl .lbl{font-size:14px;font-weight:600}
+.result{background:var(--night);color:var(--night-ink);border-radius:10px;padding:30px;display:flex;flex-direction:column;gap:12px;align-self:flex-start}
+.result .kv{border-color:var(--night-line)}
+.result .kv span{color:var(--night-muted)}
+.result .big{font-family:var(--display);font-weight:800;font-size:clamp(36px,4.4vw,54px);line-height:1;color:var(--amber);font-variant-numeric:tabular-nums}
+.sim input.num{width:100%;max-width:320px;font:600 17px var(--text);padding:12px;border:1px solid var(--field);border-radius:6px;background:var(--surface);color:var(--ink);font-variant-numeric:tabular-nums}
+.fit{margin:0;font-size:14px;font-weight:600;padding:10px 12px;border-radius:6px;background:var(--night-line);color:var(--night-ink)}
+.fit.ok::before{content:"✓ ";color:var(--amber)}
+.fit.no::before{content:"! ";color:var(--amber)}
+.result .legal{font-size:12.5px;line-height:1.5;color:var(--night-muted)}
+
+/* form */
+.contact{display:flex;flex-wrap:wrap;gap:40px}
+.contact > div,.contact > form{flex:1 1 400px;min-width:0}
+form.f{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.f .full{grid-column:1/-1}
+.f label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.f input,.f select,.f textarea{width:100%;font:inherit;font-size:16px;padding:12px;border:1px solid var(--field);border-radius:6px;background:var(--surface);color:var(--ink)}
+.f textarea{resize:vertical}
+.f .err{color:#B3261E;font-size:13px;margin-top:4px}
+:root[data-theme="dark"] .f .err{color:#F2B8B5}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .f .err{color:#F2B8B5}}
+.status{font-size:14px;color:var(--ink-2)}
+.copyline{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.copyline code{font:600 17px/1.3 var(--text);user-select:all;background:var(--surface);border:1px solid var(--line);padding:8px 12px;border-radius:6px}
+
+/* elevations */
+.elev svg{display:block;width:100%;height:auto}
+.fx-sky{fill:var(--surface-2)}
+.fx-ground{stroke:var(--muted);stroke-width:2}
+.fx-platea{fill:var(--field)}
+.fx-wall{fill:var(--surface);stroke:var(--ink);stroke-width:2}
+.fx-siding{stroke:var(--line);stroke-width:1}
+.fx-roof{fill:var(--ink)}
+.fx-win{fill:var(--room-wet);stroke:var(--ink);stroke-width:2}
+.fx-mull{stroke:var(--ink);stroke-width:1.5}
+.fx-door{fill:var(--pine);stroke:var(--ink);stroke-width:2}
+.fx-post{fill:var(--amber);stroke:var(--ink);stroke-width:1.5}
+.fx-gal{fill:var(--ink);opacity:.85}
+.card .elev{border-radius:6px;overflow:hidden;border:1px solid var(--line);margin:-6px -6px 4px}
+.hero-fig{margin:0}
+.hero-fig .elev{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+/* configurator */
+.cfg{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.cfg-list{flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:22px}
+.cfg-group h3{font-size:17px;margin-bottom:8px;color:var(--ink-2);font-family:var(--text);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.opt{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 14px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.opt + .opt{margin-top:8px}
+.opt.on{border-color:var(--pine);box-shadow:inset 0 0 0 1px var(--pine)}
+.opt.off{opacity:.55}
+.opt input[type=checkbox]{width:22px;height:22px;accent-color:var(--pine);margin:0}
+.opt .nm{font-weight:600}
+.opt .dt{grid-column:2/3;font-size:14px;color:var(--muted)}
+.opt .pr{font-variant-numeric:tabular-nums;font-weight:600;text-align:right;white-space:nowrap}
+.opt .pr.neg{color:var(--pine)}
+.qty{display:inline-flex;align-items:center;gap:6px}
+.qty button{width:36px;height:36px;border-radius:6px;border:1px solid var(--field);background:var(--surface);color:var(--ink);font:600 18px/1 var(--text);cursor:pointer}
+.qty input{width:72px;height:36px;text-align:center;font:600 15px var(--text);border:1px solid var(--field);border-radius:6px;background:var(--surface);color:var(--ink)}
+.sum{flex:1 1 320px;min-width:0;position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);background:var(--night);color:var(--night-ink);border-radius:10px;padding:26px;display:flex;flex-direction:column;gap:10px}
+.sum .ln{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--night-muted);font-variant-numeric:tabular-nums}
+.sum .ln b{color:var(--night-ink);font-weight:600}
+.sum .tot{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-top:12px;border-top:1px solid var(--night-line)}
+.sum .tot b{font-family:var(--display);font-weight:800;font-size:clamp(28px,3.4vw,40px);color:var(--amber);font-variant-numeric:tabular-nums}
+@media (max-width:900px){.sum{position:static}}
+footer{background:var(--night);color:var(--night-muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-between;padding-block:30px}
+footer b{font-family:var(--display);letter-spacing:.06em;color:var(--night-ink)}
+
+@media (max-width:560px){ form.f{grid-template-columns:minmax(0,1fr)} .band{padding-block:52px} }
+@media (max-width:760px){ header.top{position:static} .nav-links{display:none} .nav{justify-content:space-between} }
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:no-preference){ .card,.chip,.btn{transition:background-color .15s,border-color .15s,color .15s} }
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="#inicio" data-cfg="marca">RAÍZ<small>viviendas industrializadas</small></a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#modelos">Modelos</a><a href="#arma">Armá tu vivienda</a><a href="#incluye">Qué incluye</a><a href="#proceso">Cómo trabajamos</a><a href="#cuotas">Financiación</a>
+    </nav>
+    <a class="btn btn--pine" href="#contacto">Pedí tu presupuesto</a>
+  </div>
+</header>
+
+<main>
+<section id="inicio" class="wrap hero">
+  <div class="stack" style="gap:22px">
+    <p class="eyebrow">Neuquén · Plottier · Centenario · Cipolletti</p>
+    <h1>Tu vivienda en tu lote, lista en semanas.</h1>
+    <p class="lead">Viviendas industrializadas de entramado de madera, fabricadas bajo techo y montadas en la Confluencia. Tres modelos, precio cerrado puesto en tu lote y cuotas propias en pesos.</p>
+    <div class="row"><a class="btn btn--ink" href="#modelos">Ver los modelos</a><a class="btn btn--line" href="#cuotas">Calcular mi cuota</a></div>
+    <div class="facts">
+      <div class="fact"><b id="f-desde">$ 45.400.000</b><span>desde, semillave puesta en tu lote</span></div>
+      <div class="fact"><b id="f-plazo">[PLAZO] días</b><span>de la firma a la entrega llave en mano</span></div>
+      <div class="fact"><b>Sin CAT</b><span>el entramado de madera es sistema tradicional</span></div>
+    </div>
+  </div>
+  <div>
+    <figure class="hero-fig"><div class="elev" id="hero-elev" role="img" aria-label="Ilustración de la fachada del modelo Refugio"></div><figcaption class="note" style="margin-top:6px">Ilustración de la fachada del modelo Refugio, 50 m².</figcaption></figure>
+    <div class="wall" role="img" aria-label="Corte del muro, de afuera hacia adentro: revestimiento cementicio, barrera de agua y viento, OSB, pino estructural con lana de vidrio, placa de yeso">
+      <div style="background:var(--surface-2)">Revestimiento cementicio</div>
+      <div style="background:var(--surface)">Barrera agua y viento</div>
+      <div style="background:var(--room-wet)">OSB 9,5 mm</div>
+      <div style="background:var(--surface-2)">Pino 2"×4" c/40 cm</div>
+      <div style="background:var(--room-wet)">Lana de vidrio</div>
+      <div style="background:var(--surface)">Placa de yeso 12,5 mm</div>
+    </div>
+    <p class="note" style="margin-top:6px">Corte del muro exterior, de afuera hacia adentro.</p>
+  </div>
+</section>
+
+<section id="modelos" class="band band--surface">
+  <div class="wrap stack" style="gap:32px">
+    <div class="stack" style="gap:10px;max-width:760px">
+      <h2>Tres modelos para cómo se vive en Neuquén</h2>
+      <p class="lead">El dos ambientes que se alquila solo, la vivienda de dos dormitorios para la familia que llega a la zona y la de tres para quedarse.</p>
+    </div>
+    <div class="seg" role="group" aria-label="Modalidad de entrega">
+      <button type="button" class="chip" data-mod="semi" aria-pressed="false">Semillave</button>
+      <button type="button" class="chip" data-mod="llave" aria-pressed="true">Llave en mano</button>
+    </div>
+    <div class="cards" id="cards"></div>
+    <div class="detail">
+      <div class="stack" style="gap:10px">
+        <h3 id="elev-title">Fachada</h3>
+        <div class="elev" id="det-elev" role="img"></div>
+        <h3 id="plan-title" style="margin-top:12px">Planta del modelo</h3>
+        <div class="plan" id="plan" role="img"></div>
+        <p class="note" id="plan-note"></p>
+      </div>
+      <div class="stack" style="gap:6px">
+        <h3 id="price-title">Precio</h3>
+        <div class="kv"><span>Semillave</span><b id="p-semi"></b></div>
+        <div class="kv"><span>Llave en mano</span><b id="p-llave"></b></div>
+        <p class="note" style="margin-top:8px">Precio en pesos con IVA, puesto en Neuquén, Plottier, Centenario o Cipolletti, con platea, flete y montaje. No incluye el lote ni las conexiones a las redes de agua, luz, gas y cloaca. Vigente hasta la fecha indicada; luego se actualiza por el índice de costo de la construcción (CAC).</p>
+        <div class="row" style="margin-top:10px"><a class="btn btn--pine" href="#contacto" id="want-model">Quiero este modelo</a><a class="btn btn--line" href="#cuotas">Ver cuotas</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="arma" class="band">
+  <div class="wrap stack" style="gap:28px">
+    <div class="stack" style="gap:10px;max-width:760px">
+      <h2>Armá tu vivienda</h2>
+      <p class="lead" id="arma-lead">Partís del modelo elegido y sumás o sacás lo que necesitás. El precio y las cuotas se recalculan al instante.</p>
+    </div>
+    <div class="cfg">
+      <div class="cfg-list" id="cfg-list"></div>
+      <aside class="sum" aria-live="polite" aria-label="Resumen de tu vivienda">
+        <span id="s-head" style="font-size:14px;color:var(--night-muted)"></span>
+        <div id="s-lines" class="stack" style="gap:8px"></div>
+        <div class="tot"><span>Total con IVA</span><b id="s-total"></b></div>
+        <span class="note" id="s-m2" style="color:var(--night-muted)"></span>
+        <div class="row" style="margin-top:6px"><a class="btn btn--amber" href="#cuotas">Ver cuotas</a><a class="btn btn--line" href="#contacto" style="color:var(--night-ink);border-color:var(--night-ink)">Pedir presupuesto</a></div>
+        <p class="note" style="color:var(--night-muted)">Precios de referencia. Se confirman en la visita técnica a tu lote.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="incluye" class="band band--surface">
+  <div class="wrap stack" style="gap:28px">
+    <h2>Semillave o llave en mano</h2>
+    <div class="twocol">
+      <div class="box box--light">
+        <h3>Semillave</h3>
+        <p style="color:var(--ink-2)">La vivienda cerrada, techada y aislada. El interior lo terminás con tu gente.</p>
+        <ul>
+          <li>Platea de hormigón armado</li>
+          <li>Estructura de pino, OSB y barrera de agua y viento</li>
+          <li>Revestimiento exterior cementicio pintado</li>
+          <li>Lana de vidrio y placa de yeso interior</li>
+          <li>Techo de chapa con aislación y machimbre a la vista</li>
+          <li>Aberturas colocadas</li>
+          <li>Cañerías de agua y desagües, cañería eléctrica y cajas</li>
+          <li>Cerámicos y juego de baño entregados en obra</li>
+        </ul>
+      </div>
+      <div class="box box--dark">
+        <h3>Llave en mano</h3>
+        <p>Todo lo de semillave, terminado y listo para mudarte.</p>
+        <ul>
+          <li>Pisos, revestimientos y zócalos colocados</li>
+          <li>Baño completo instalado</li>
+          <li>Instalación eléctrica con tablero, llaves y tomas</li>
+          <li>Termotanque y mesada de cocina con bacha</li>
+          <li>Pintura interior</li>
+          <li>Limpieza final de obra</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proceso" class="band">
+  <div class="wrap stack" style="gap:28px">
+    <h2>Cómo trabajamos</h2>
+    <ol class="steps">
+      <li><span class="n">PASO 1</span><strong>Elegís el modelo</strong><span>Visitamos tu lote y cerramos precio y plazo por escrito.</span></li>
+      <li><span class="n">PASO 2</span><strong>Platea</strong><span>Se hace en un día y cura entre 20 y 30 días.</span></li>
+      <li><span class="n">PASO 3</span><strong>Paneles en planta</strong><span>Mientras la platea cura, fabricamos tu vivienda bajo techo.</span></li>
+      <li><span class="n">PASO 4</span><strong>Montaje</strong><span>Llegan los paneles y la vivienda queda cerrada y techada.</span></li>
+      <li><span class="n">PASO 5</span><strong>Entrega</strong><span>Semillave para que termines vos, o llave en mano para mudarte.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="cuotas" class="band band--surface">
+  <div class="wrap sim">
+    <div class="stack" style="gap:20px">
+      <h2>Calculá tu cuota</h2>
+      <p class="lead">Financiación propia: cuotas fijas en pesos o hasta 72 cuotas ajustadas por UVA. Podés entregar tu vehículo como parte de pago.</p>
+      <div class="ctl"><span class="lbl" id="l-mod">Modelo</span><div class="seg" role="group" aria-labelledby="l-mod" id="sim-models"></div></div>
+      <div class="ctl"><span class="lbl" id="l-mo">Modalidad</span><div class="seg" role="group" aria-labelledby="l-mo">
+        <button type="button" class="chip" data-mod="semi" aria-pressed="false">Semillave</button>
+        <button type="button" class="chip" data-mod="llave" aria-pressed="true">Llave en mano</button></div></div>
+      <div class="ctl"><span class="lbl" id="l-pl">Cuotas fijas en pesos</span><div class="seg" role="group" aria-labelledby="l-pl" id="sim-plans-fija"></div></div>
+      <div class="ctl"><span class="lbl" id="l-pu">Cuotas ajustadas por UVA · anticipo desde 15%</span><div class="seg" role="group" aria-labelledby="l-pu" id="sim-plans-uva"></div></div>
+      <div class="ctl"><label class="lbl" for="veh">Valor de guía de tu vehículo (opcional)</label>
+        <input class="num" id="veh" type="text" inputmode="numeric" autocomplete="off" placeholder="Ej.: 15.000.000">
+        <span class="note">Lo tomamos al 80% del valor de guía InfoAuto/ACARA, hasta el 40% del precio. Hasta 10 años de antigüedad y sin prenda.</span></div>
+      <div class="ctl"><label class="lbl" for="ing">Ingreso neto mensual del hogar</label>
+        <input class="num" id="ing" type="text" inputmode="numeric" autocomplete="off" value="1.750.000">
+        <span class="note">El ejemplo es el sueldo promedio de un trabajador registrado (RIPTE), neto de aportes. La cuota no debería superar el 30% del ingreso.</span></div>
+    </div>
+    <div class="result" aria-live="polite">
+      <span id="r-head" style="font-size:14px;color:var(--night-muted)"></span>
+      <div class="kv"><span>Precio de contado</span><b id="r-contado"></b></div>
+      <div class="kv" id="r-veh-row" hidden><span>Vehículo (80% del valor de guía)</span><b id="r-veh"></b></div>
+      <div class="kv"><span>Anticipo en efectivo</span><b id="r-ant"></b></div>
+      <div class="kv"><span>Monto financiado</span><b id="r-fin"></b></div>
+      <div style="display:flex;flex-direction:column;gap:4px;padding-top:6px">
+        <span id="r-ncuotas" style="font-size:14px;color:var(--night-muted)"></span>
+        <span class="big" id="r-cuota"></span>
+      </div>
+      <div class="kv"><span id="r-total-lbl">Total a plazo</span><b id="r-total"></b></div>
+      <p class="fit" id="r-fit"></p>
+      <p class="legal" id="r-legal"></p>
+      <a class="btn btn--amber" href="#contacto" style="align-self:flex-start">Quiero esta cuota</a>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="band band--surface">
+  <div class="wrap contact">
+    <div class="stack" style="gap:16px">
+      <h2>Pedí tu presupuesto</h2>
+      <p class="lead">Completá tus datos: armamos el mensaje y lo mandás por WhatsApp. Te respondemos con precio cerrado para tu lote.</p>
+      <div class="copyline"><code id="wa-num"></code><button type="button" class="btn btn--line" id="copy-num">Copiar número</button></div>
+      <p class="note" id="addr"></p>
+    </div>
+    <form class="f" id="lead" novalidate>
+      <div class="full"><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" autocomplete="name" required><div class="err" id="e-nombre" hidden>Escribí tu nombre.</div></div>
+      <div><label for="f-tel">Teléfono</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required><div class="err" id="e-tel" hidden>Dejanos un teléfono con código de área.</div></div>
+      <div><label for="f-loc">Localidad del lote</label><select id="f-loc" name="loc"><option>Neuquén</option><option>Plottier</option><option>Centenario</option><option>Cipolletti</option><option>Otra</option></select></div>
+      <div><label for="f-mod">Modelo</label><select id="f-mod" name="mod"></select></div>
+      <div><label for="f-lote">¿Tenés lote?</label><select id="f-lote" name="lote"><option>Sí, escriturado</option><option>Sí, con boleto</option><option>Todavía no</option></select></div>
+      <div class="full"><label for="f-msg">Consulta (opcional)</label><textarea id="f-msg" name="msg" rows="3"></textarea></div>
+      <div class="full row" style="align-items:center"><button type="submit" class="btn btn--ink">Armar mensaje de WhatsApp</button><a class="btn btn--pine" id="wa-go" href="#" target="_blank" rel="noopener" hidden>Abrir WhatsApp</a></div>
+      <p class="status full" id="status" aria-live="polite"></p>
+      <div class="full" id="msg-box" hidden><label for="f-out">Tu mensaje (podés copiarlo)</label><textarea id="f-out" rows="5" readonly></textarea></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><b data-cfg="marca-foot">RAÍZ</b><span id="foot-place"></span><span id="foot-valid"></span></div></footer>
+
+<script>
+/* ===================== CONFIGURACIÓN: editar solo este bloque ===================== */
+const CONFIG = {
+  marca: "RAÍZ",
+  whatsapp: "54XXXXXXXXXX",          // formato internacional sin + ni espacios: 54 9 299 ... => "549299XXXXXXX"
+  whatsappVisible: "+54 9 [NÚMERO]",
+  direccion: "[DIRECCIÓN DE LA BASE / VIVIENDA MUESTRA EN PLOTTIER]",
+  fabrica: "Fábrica: Venado Tuerto, Santa Fe",
+  validez: "Precios válidos hasta [FECHA]",
+  plazoDias: "[PLAZO]",
+  tna: 0.30,                         // tasa nominal anual del plan propio
+  ivaIntereses: 0.105,               // IVA sobre intereses (sigue al bien; validar con contador)
+  tasaUva: 0.10,                     // tasa real anual sobre UVA de los planes indexados
+  efectivoMin: 0.15,                 // anticipo mínimo en efectivo (sobre el precio)
+  vehiculo: {tasacion: 0.80, maxPct: 0.40},  // se toma al 80% del valor de guía, hasta 40% del precio
+  cuotaMaxIngreso: 0.30,             // cuota / ingreso neto máximo recomendado
+  planes: [ {tipo:"fija", ant:0.50, n:12}, {tipo:"fija", ant:0.40, n:18}, {tipo:"fija", ant:0.30, n:24},
+            {tipo:"uva", ant:0.15, n:36}, {tipo:"uva", ant:0.15, n:48}, {tipo:"uva", ant:0.15, n:72} ],
+  modelos: [
+    {id:"nido", nombre:"Nido", m2:36, dorm:"1 dormitorio", banos:"1 baño", medidas:"6,00 × 6,00 m", ventanas:4, dorms:1, fachada:[["p",1.2],["v",3.6]], semi:45400000, llave:61100000,
+     para:"El dos ambientes que más se alquila. Para invertir, para una segunda vivienda en el lote o para empezar.",
+     cols:6, ar:"6 / 6", ambientes:[["Dormitorio","1 / 4","1 / 4"],["Baño","4 / 6","1 / 4",1],["Lav.","6 / 7","1 / 4",1],["Estar · comedor · cocina","1 / 7","4 / 7"]]},
+    {id:"refugio", nombre:"Refugio", m2:50, dorm:"2 dormitorios", banos:"1 baño", medidas:"8,00 × 6,30 m", ventanas:5, dorms:2, fachada:[["v",0.8],["p",3.55],["v",5.7]], semi:54200000, llave:72800000,
+     para:"La vivienda de la familia que llega a la zona. Entra en Neuquén Habita y en los créditos para construcción.",
+     cols:8, ar:"8 / 6.3", ambientes:[["Dormitorio","1 / 4","1 / 4"],["Baño","4 / 6","1 / 4",1],["Dormitorio","6 / 9","1 / 4"],["Cocina","1 / 4","4 / 7",1],["Estar · comedor","4 / 9","4 / 7"]]},
+    {id:"familia", nombre:"Familia", m2:68, dorm:"3 dormitorios", banos:"1 baño", medidas:"10,80 × 6,30 m", ventanas:6, dorms:3, fachada:[["v",0.8],["v",3.1],["p",5.5],["v",8.5]], semi:65200000, llave:89300000,
+     para:"Para quedarse: tres dormitorios y estar amplio, con el mejor precio por metro cuadrado.",
+     cols:11, ar:"10.8 / 6.3", ambientes:[["Dormitorio","1 / 4","1 / 4"],["Dormitorio","4 / 7","1 / 4"],["Baño","7 / 9","1 / 4",1],["Dormitorio","9 / 12","1 / 4"],["Cocina","1 / 4","4 / 7",1],["Estar · comedor","4 / 12","4 / 7"]]}
+  ],
+  // Agregados y quitas. tipo: "fijo" | "m2" (× m² del modelo) | "ventana" (× ventanas) | "cantidad" | "km"
+  // solo: "semi" | "llave" (si falta, aplica a ambas). modelos: lista de ids (si falta, todos). Precios con IVA, de referencia.
+  grupos: [
+    {nombre:"Confort y clima", items:[
+      {id:"patagonia", nombre:"Aislación Patagonia", detalle:"Lana de vidrio de 100 mm en muros y techo, para inviernos de −15 °C", tipo:"m2", precio:32000},
+      {id:"dvh", nombre:"Doble vidriado hermético (DVH)", detalle:"En todas las ventanas: menos frío, menos ruido", tipo:"ventana", precio:250000},
+      {id:"aire", nombre:"Aire acondicionado frío/calor", detalle:"Split 3.000 frigorías instalado", tipo:"cantidad", precio:1300000, max:4},
+      {id:"solar", nombre:"Termotanque solar", detalle:"Reemplaza al termotanque eléctrico", tipo:"fijo", precio:950000, solo:"llave"},
+      {id:"gas", nombre:"Instalación de gas", detalle:"Cañería y conexiones para cocina y termotanque (si hay red)", tipo:"fijo", precio:3500000, solo:"llave"}
+    ]},
+    {nombre:"Más espacio y equipamiento", items:[
+      {id:"galeria", nombre:"Galería semicubierta", detalle:"3,00 × 2,50 m, madera y chapa, sobre la entrada", tipo:"fijo", precio:1200000},
+      {id:"bano2", nombre:"Segundo baño", detalle:"Baño completo adicional (suma ~4 m²)", tipo:"fijo", precio:6500000, solo:"llave", modelos:["refugio","familia"]},
+      {id:"placard", nombre:"Placard en dormitorio", detalle:"Melamina, con puertas y barral", tipo:"cantidad", precio:650000, max:3},
+      {id:"cocina", nombre:"Muebles de cocina completos", detalle:"Bajo mesada, alacena y anafe eléctrico", tipo:"fijo", precio:1400000},
+      {id:"vereda", nombre:"Vereda perimetral", detalle:"Hormigón, 1 m de ancho alrededor de la vivienda", tipo:"fijo", precio:1200000}
+    ]},
+    {nombre:"Lo que podés sacar", items:[
+      {id:"sinplatea", nombre:"Sin platea", detalle:"Ya tenés la platea hecha o la hacés con tu gente", tipo:"m2", precio:-95000},
+      {id:"sinpiso", nombre:"Sin piso cerámico", detalle:"Te entregamos la platea alisada para tu piso", tipo:"m2", precio:-80000, solo:"llave"}
+    ]},
+    {nombre:"Ubicación", items:[
+      {id:"km", nombre:"Lote fuera de la Confluencia", detalle:"Kilómetros extra desde Neuquén capital (flete y traslado del equipo)", tipo:"km", precio:2500, max:1500}
+    ]}
+  ]
+};
+/* =================================================================================== */
+
+const $ = (id) => document.getElementById(id);
+const ars = (v) => "$ " + Math.round(v).toLocaleString("es-AR");
+const pct = (v) => (v * 100).toFixed(1).replace(".", ",") + "%";
+const state = { model: "refugio", mod: "llave", plan: 2, sel: {} };
+
+function allItems() { return CONFIG.grupos.flatMap((g) => g.items); }
+function applies(it, m) { return (!it.solo || it.solo === state.mod) && (!it.modelos || it.modelos.includes(m.id)); }
+function unitPrice(it, m) {
+  if (it.tipo === "m2") return it.precio * m.m2;
+  if (it.tipo === "ventana") return it.precio * m.ventanas;
+  return it.precio;
+}
+function qtyOf(it) { const v = state.sel[it.id]; return v ? (it.tipo === "cantidad" || it.tipo === "km" ? v : 1) : 0; }
+function lineTotal(it, m) { return applies(it, m) ? unitPrice(it, m) * qtyOf(it) : 0; }
+function chosen(m) { return allItems().filter((it) => applies(it, m) && qtyOf(it) > 0); }
+function basePrice(m) { return state.mod === "llave" ? m.llave : m.semi; }
+function configTotal(m) { return basePrice(m) + chosen(m).reduce((s, it) => s + lineTotal(it, m), 0); }
+function itemLabel(it) {
+  const q = qtyOf(it);
+  if (it.tipo === "cantidad" && q > 1) return `${it.nombre} × ${q}`;
+  if (it.tipo === "km") return `${it.nombre} (${q} km)`;
+  return it.nombre;
+}
+
+function renderConfig() {
+  const m = CONFIG.modelos.find((x) => x.id === state.model);
+  $("arma-lead").textContent = `Partís del ${m.nombre} ${m.m2} m² ${state.mod === "llave" ? "llave en mano" : "semillave"} y sumás o sacás lo que necesitás. El precio y las cuotas se recalculan al instante.`;
+  const host = $("cfg-list"); host.textContent = "";
+  CONFIG.grupos.forEach((g) => {
+    const box = document.createElement("div"); box.className = "cfg-group";
+    const h = document.createElement("h3"); h.textContent = g.nombre; box.appendChild(h);
+    g.items.forEach((it) => {
+      const ok = applies(it, m), q = qtyOf(it);
+      const row = document.createElement("div");
+      row.className = "opt" + (ok && q > 0 ? " on" : "") + (ok ? "" : " off");
+      const id = "opt-" + it.id;
+      let ctl;
+      if (it.tipo === "cantidad" || it.tipo === "km") {
+        ctl = document.createElement("div"); ctl.className = "qty";
+        const step = it.tipo === "km" ? 50 : 1;
+        const minus = document.createElement("button"); minus.type = "button"; minus.textContent = "−"; minus.setAttribute("aria-label", "Quitar " + it.nombre);
+        const inp = document.createElement("input"); inp.type = "number"; inp.min = "0"; inp.max = String(it.max || 99); inp.step = String(step); inp.id = id; inp.value = String(q); inp.disabled = !ok;
+        inp.setAttribute("aria-label", it.tipo === "km" ? "Kilómetros extra" : "Cantidad de " + it.nombre);
+        const plus = document.createElement("button"); plus.type = "button"; plus.textContent = "+"; plus.setAttribute("aria-label", "Agregar " + it.nombre);
+        const set = (v) => { v = Math.max(0, Math.min(it.max || 99, Math.round(v))); if (v) state.sel[it.id] = v; else delete state.sel[it.id]; render(); };
+        minus.disabled = plus.disabled = !ok;
+        minus.addEventListener("click", () => set(q - step)); plus.addEventListener("click", () => set(q + step));
+        inp.addEventListener("change", () => set(Number(inp.value) || 0));
+        ctl.append(minus, inp, plus);
+      } else {
+        ctl = document.createElement("input"); ctl.type = "checkbox"; ctl.id = id; ctl.checked = q > 0; ctl.disabled = !ok;
+        ctl.addEventListener("change", () => { if (ctl.checked) state.sel[it.id] = 1; else delete state.sel[it.id]; render(); });
+      }
+      const nm = document.createElement("label"); nm.className = "nm"; nm.htmlFor = id; nm.textContent = it.nombre;
+      const pr = document.createElement("span"); const up = unitPrice(it, m);
+      pr.className = "pr" + (up < 0 ? " neg" : "");
+      const unit = it.tipo === "cantidad" ? " c/u" : it.tipo === "km" ? " por km" : "";
+      pr.textContent = ok ? (up < 0 ? "− " + ars(-up) : "+ " + ars(up)) + unit : (it.solo === "llave" ? "Solo llave en mano" : it.solo === "semi" ? "Solo semillave" : "No disponible en este modelo");
+      const dt = document.createElement("span"); dt.className = "dt"; dt.textContent = it.detalle;
+      row.append(ctl, nm, pr, dt);
+      host.appendChild(row);
+    });
+  });
+  // summary
+  $("s-head").textContent = `${m.nombre} ${m.m2} m² · ${state.mod === "llave" ? "Llave en mano" : "Semillave"}`;
+  const lines = $("s-lines"); lines.textContent = "";
+  const add = (a, b) => { const d = document.createElement("div"); d.className = "ln"; const x = document.createElement("span"); x.textContent = a; const y = document.createElement("b"); y.textContent = b; d.append(x, y); lines.appendChild(d); };
+  add("Precio base", ars(basePrice(m)));
+  const ch = chosen(m);
+  if (!ch.length) add("Sin agregados", "—");
+  ch.forEach((it) => { const v = lineTotal(it, m); add(itemLabel(it), (v < 0 ? "− " : "+ ") + ars(Math.abs(v))); });
+  const tot = configTotal(m);
+  $("s-total").textContent = ars(tot);
+  $("s-m2").textContent = `${ars(tot / m.m2)} por m² · IVA incluido`;
+}
+
+function cuotaFija(saldo, tna, n) { const i = tna / 12; return i > 0 ? saldo * i / (1 - Math.pow(1 + i, -n)) : saldo / n; }
+
+function frente(m) { return Number(m.medidas.split("×")[0].replace(",", ".").trim()); }
+function facade(m, galeria) {
+  const s = 34, L = frente(m), pad = 0.9, W = (L + 2 * pad) * s, Hh = 4.3 * s;
+  const base = Hh - 0.35 * s, pl = 0.15 * s, x0 = pad * s, x1 = (pad + L) * s;
+  const yL = base - pl - 3.0 * s, yR = base - pl - 2.6 * s;
+  const yAt = (x) => yL + (yR - yL) * (x - x0) / (x1 - x0);
+  const ov = 0.5 * s, th = 0.2 * s;
+  let g = `<rect class="fx-sky" x="0" y="0" width="${W}" height="${Hh}"/>`;
+  g += `<rect class="fx-platea" x="${x0 - 6}" y="${base - pl}" width="${x1 - x0 + 12}" height="${pl}"/>`;
+  g += `<polygon class="fx-wall" points="${x0},${base - pl} ${x0},${yL} ${x1},${yR} ${x1},${base - pl}"/>`;
+  for (let y = base - pl - 0.22 * s; y > yL; y -= 0.22 * s) {
+    const xs = y < yR ? x0 + (x1 - x0) * (y - yL) / (yR - yL) : x1;
+    if (xs > x0 + 2) g += `<line class="fx-siding" x1="${x0 + 1}" y1="${y}" x2="${Math.min(xs, x1) - 1}" y2="${y}"/>`;
+  }
+  const rx0 = x0 - ov, rx1 = x1 + ov;
+  g += `<polygon class="fx-roof" points="${rx0},${yAt(rx0) - 2} ${rx1},${yAt(rx1) - 2} ${rx1},${yAt(rx1) - 2 - th} ${rx0},${yAt(rx0) - 2 - th}"/>`;
+  let doorX = null;
+  m.fachada.forEach(([t, pos]) => {
+    const x = x0 + pos * s;
+    if (t === "v") {
+      const w = 1.5 * s, h = 1.1 * s, y = base - pl - 2.0 * s;
+      g += `<rect class="fx-win" x="${x}" y="${y}" width="${w}" height="${h}"/><line class="fx-mull" x1="${x + w / 2}" y1="${y}" x2="${x + w / 2}" y2="${y + h}"/>`;
+    } else {
+      const w = 0.9 * s, h = 2.05 * s; doorX = x;
+      g += `<rect class="fx-door" x="${x}" y="${base - pl - h}" width="${w}" height="${h}"/><circle cx="${x + w - 7}" cy="${base - pl - h / 2}" r="2.5" class="fx-roof"/>`;
+    }
+  });
+  if (galeria && doorX !== null) {
+    const gx0 = doorX + 0.45 * s - 1.5 * s, gx1 = gx0 + 3.0 * s, gy = base - pl - 2.45 * s;
+    g += `<rect class="fx-gal" x="${gx0 - 8}" y="${gy - 10}" width="${gx1 - gx0 + 16}" height="10"/>`;
+    g += `<rect class="fx-post" x="${gx0}" y="${gy}" width="8" height="${base - pl - gy}"/><rect class="fx-post" x="${gx1 - 8}" y="${gy}" width="8" height="${base - pl - gy}"/>`;
+  }
+  g += `<line class="fx-ground" x1="0" y1="${base}" x2="${W}" y2="${base}"/>`;
+  return `<svg viewBox="0 0 ${W} ${Hh}" aria-hidden="true" focusable="false">${g}</svg>`;
+}
+function galeriaOn(m) { const it = allItems().find((x) => x.id === "galeria"); return !!(it && applies(it, m) && qtyOf(it) > 0); }
+
+function renderCards() {
+  const host = $("cards"); host.textContent = "";
+  CONFIG.modelos.forEach((m) => {
+    const sel = m.id === state.model;
+    const price = state.mod === "llave" ? m.llave : m.semi;
+    const a = document.createElement("article");
+    a.className = "card" + (sel ? " is-sel" : "");
+    a.innerHTML =
+      `<div class="elev">${facade(m, sel && galeriaOn(m))}</div><div class="top-line"><h3 style="font-size:28px;font-weight:800">${m.nombre}</h3><span class="m2">${m.m2} m²</span></div>
+       <p class="spec">${m.dorm} · ${m.banos} · ${m.medidas}</p>
+       <p class="para">${m.para}</p>
+       <div class="price"><small>${state.mod === "llave" ? "Llave en mano" : "Semillave"}, puesta en tu lote</small><b>${ars(price)}</b>
+       <small>IVA incluido · ${ars(price / m.m2)} por m²</small></div>`;
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "btn " + (sel ? "btn--pine" : "btn--line");
+    b.textContent = sel ? "Seleccionado" : "Ver planta y precio";
+    b.setAttribute("aria-pressed", sel ? "true" : "false");
+    b.addEventListener("click", () => { state.model = m.id; render(); });
+    a.appendChild(b); host.appendChild(a);
+  });
+}
+
+function renderDetail() {
+  const m = CONFIG.modelos.find((x) => x.id === state.model);
+  $("elev-title").textContent = "Fachada del modelo " + m.nombre;
+  $("det-elev").innerHTML = facade(m, galeriaOn(m));
+  $("det-elev").setAttribute("aria-label", "Ilustración de la fachada del modelo " + m.nombre + (galeriaOn(m) ? " con galería" : ""));
+  $("plan-title").textContent = "Planta del modelo " + m.nombre;
+  $("price-title").textContent = "Precio del modelo " + m.nombre;
+  const plan = $("plan"); plan.textContent = "";
+  plan.style.gridTemplateColumns = `repeat(${m.cols}, minmax(0, 1fr))`;
+  plan.style.gridTemplateRows = "repeat(6, minmax(0, 1fr))";
+  plan.style.aspectRatio = m.ar;
+  plan.setAttribute("aria-label", "Planta esquemática del modelo " + m.nombre + ": " + m.ambientes.map((r) => r[0]).join(", "));
+  m.ambientes.forEach(([label, c, r, wet]) => {
+    const d = document.createElement("div"); d.textContent = label; d.style.gridColumn = c; d.style.gridRow = r;
+    if (wet) d.className = "wet"; plan.appendChild(d);
+  });
+  $("plan-note").textContent = `Esquema orientativo, sin escala exacta. ${m.medidas}, ${m.m2} m² cubiertos.`;
+  $("p-semi").textContent = ars(m.semi); $("p-llave").textContent = ars(m.llave);
+}
+
+function parseNum(v) { return Number(String(v || "").replace(/[^0-9]/g, "")) || 0; }
+function simCalc() {
+  const m = CONFIG.modelos.find((x) => x.id === state.model), p = CONFIG.planes[state.plan];
+  const contado = configTotal(m);
+  const guia = parseNum($("veh").value);
+  const veh = Math.min(guia * CONFIG.vehiculo.tasacion, contado * CONFIG.vehiculo.maxPct);
+  const efectivo = Math.max(contado * CONFIG.efectivoMin, contado * p.ant - veh);
+  const fin = Math.max(0, contado - efectivo - veh);
+  const tasa = p.tipo === "uva" ? CONFIG.tasaUva : CONFIG.tna;
+  const c = cuotaFija(fin, tasa, p.n);
+  return { m, p, contado, guia, veh, efectivo, fin, tasa, c };
+}
+function planLabel(p) { return p.tipo === "uva" ? `${p.n} cuotas UVA` : `${Math.round(p.ant * 100)}% + ${p.n} fijas`; }
+function renderSim() {
+  const ms = $("sim-models"); ms.textContent = "";
+  CONFIG.modelos.forEach((m) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "chip";
+    b.textContent = `${m.nombre} ${m.m2} m²`; b.setAttribute("aria-pressed", m.id === state.model ? "true" : "false");
+    b.addEventListener("click", () => { state.model = m.id; render(); }); ms.appendChild(b);
+  });
+  const pf = $("sim-plans-fija"), pu = $("sim-plans-uva"); pf.textContent = ""; pu.textContent = "";
+  CONFIG.planes.forEach((p, k) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "chip";
+    b.textContent = planLabel(p); b.setAttribute("aria-pressed", k === state.plan ? "true" : "false");
+    b.addEventListener("click", () => { state.plan = k; render(); });
+    (p.tipo === "uva" ? pu : pf).appendChild(b);
+  });
+  const r = simCalc();
+  const tea = Math.pow(1 + r.tasa / 12, 12) - 1;
+  const cft = Math.pow(1 + r.tasa / 12 * (1 + CONFIG.ivaIntereses), 12) - 1;
+  $("r-head").textContent = `${r.m.nombre} ${r.m.m2} m² · ${state.mod === "llave" ? "Llave en mano" : "Semillave"} · ${planLabel(r.p)}`;
+  $("r-contado").textContent = ars(r.contado);
+  $("r-veh-row").hidden = r.veh <= 0; $("r-veh").textContent = ars(r.veh);
+  $("r-ant").textContent = ars(r.efectivo); $("r-fin").textContent = ars(r.fin);
+  if (r.fin <= 0) {
+    $("r-ncuotas").textContent = "Sin saldo a financiar"; $("r-cuota").textContent = ars(0);
+  } else {
+    $("r-ncuotas").textContent = r.p.tipo === "uva" ? `${r.p.n} cuotas mensuales; la primera de` : `${r.p.n} cuotas fijas mensuales de`;
+    $("r-cuota").textContent = ars(r.c);
+  }
+  $("r-total-lbl").textContent = r.p.tipo === "uva" ? "Total en pesos de hoy" : "Total a plazo";
+  $("r-total").textContent = ars(r.efectivo + r.veh + r.c * r.p.n);
+  const ing = parseNum($("ing").value), fit = $("r-fit");
+  if (ing > 0 && r.fin > 0) {
+    const ratio = r.c / ing;
+    fit.hidden = false;
+    fit.className = "fit " + (ratio <= CONFIG.cuotaMaxIngreso ? "ok" : "no");
+    fit.textContent = ratio <= CONFIG.cuotaMaxIngreso
+      ? `La cuota es el ${pct(ratio)} de tu ingreso: entra.`
+      : `La cuota es el ${pct(ratio)} de tu ingreso. Probá ` + [r.p.n < 72 ? "más cuotas" : null, r.m.id !== "nido" ? "un modelo más chico" : null, state.mod === "llave" ? "semillave" : null, r.veh <= 0 ? "sumar tu vehículo" : null].filter(Boolean).join(", ").replace(/, ([^,]*)$/, " o $1") + ".";
+  } else fit.hidden = true;
+  $("r-legal").textContent = r.p.tipo === "uva"
+    ? `Simulación orientativa sobre el precio de contado en pesos. Sistema francés en UVA: la cuota se ajusta mensualmente por el valor de la UVA (BCRA). ` +
+      `Tasa UVA + ${pct(r.tasa)} TNA · TEA ${pct(tea)} + UVA · CFT ${pct(cft)} + UVA (con IVA sobre intereses, sin seguros). ` +
+      `Plazos de 48 y 72 cuotas con garantía hipotecaria o seguro de caución. Sujeto a aprobación crediticia. Condiciones definitivas en el contrato (art. 36, Ley 24.240).`
+    : `Simulación orientativa sobre el precio de contado en pesos. Sistema francés, cuotas fijas en pesos. TNA ${pct(r.tasa)} · TEA ${pct(tea)} · CFT ${pct(cft)} ` +
+      `(con IVA sobre intereses, sin seguros). Sujeto a aprobación crediticia. Condiciones definitivas en el contrato (art. 36, Ley 24.240).`;
+}
+
+function render() {
+  document.querySelectorAll("[data-mod]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.mod === state.mod ? "true" : "false"));
+  renderCards(); renderDetail(); renderConfig(); renderSim();
+  const sel = $("f-mod"); const m = CONFIG.modelos.find((x) => x.id === state.model);
+  if (sel.dataset.touched !== "1") sel.value = `${m.nombre} ${m.m2} m² · ${state.mod === "llave" ? "llave en mano" : "semillave"}`;
+}
+
+document.querySelectorAll("[data-mod]").forEach((b) => b.addEventListener("click", () => { state.mod = b.dataset.mod; render(); }));
+
+// static config text
+document.querySelectorAll('[data-cfg="marca"]').forEach((el) => { el.firstChild.nodeValue = CONFIG.marca; });
+document.querySelectorAll('[data-cfg="marca-foot"]').forEach((el) => { el.textContent = CONFIG.marca; });
+$("f-desde").textContent = ars(Math.min(...CONFIG.modelos.map((m) => m.semi)));
+$("f-plazo").textContent = CONFIG.plazoDias + " días";
+$("wa-num").textContent = CONFIG.whatsappVisible;
+$("addr").textContent = CONFIG.direccion;
+$("foot-place").textContent = CONFIG.fabrica + " · " + CONFIG.direccion;
+$("foot-valid").textContent = "Precios en pesos con IVA, puestos en la Confluencia. " + CONFIG.validez + ".";
+
+// form options
+const fm = $("f-mod");
+CONFIG.modelos.forEach((m) => ["semillave", "llave en mano"].forEach((t) => { const o = document.createElement("option"); o.textContent = `${m.nombre} ${m.m2} m² · ${t}`; fm.appendChild(o); }));
+fm.addEventListener("change", () => { fm.dataset.touched = "1"; });
+
+$("copy-num").addEventListener("click", async () => {
+  const t = CONFIG.whatsappVisible;
+  try { await navigator.clipboard.writeText(t); $("copy-num").textContent = "Copiado"; }
+  catch (e) { const r = document.createRange(); r.selectNodeContents($("wa-num")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $("copy-num").textContent = "Seleccionado"; }
+});
+
+$("lead").addEventListener("submit", (ev) => {
+  ev.preventDefault();
+  const nombre = $("f-nombre").value.trim(), tel = $("f-tel").value.trim();
+  $("e-nombre").hidden = !!nombre; $("e-tel").hidden = tel.replace(/\D/g, "").length >= 8;
+  if (!nombre) { $("f-nombre").focus(); return; }
+  if (tel.replace(/\D/g, "").length < 8) { $("f-tel").focus(); return; }
+  const p = CONFIG.planes[state.plan];
+  const txt = `Hola ${CONFIG.marca}, soy ${nombre} (${tel}). Me interesa: ${fm.value}. Lote en ${$("f-loc").value} (${$("f-lote").value}). ` +
+    (() => { const r = simCalc(); const ch = chosen(r.m); return (ch.length ? `Agregados: ${ch.map(itemLabel).join(", ")}. ` : "") + `Total armado: ${ars(r.contado)}. ` +
+      `Plan: ${planLabel(r.p)}` + (r.veh > 0 ? `, entrego vehículo valor de guía ${ars(r.guia)}` : "") + `, cuota estimada ${ars(r.c)}.`; })() + ($("f-msg").value.trim() ? ` Consulta: ${$("f-msg").value.trim()}` : "");
+  $("f-out").value = txt; $("msg-box").hidden = false;
+  const go = $("wa-go"); go.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(txt); go.hidden = false;
+  $("status").textContent = "Mensaje listo. Tocá Abrir WhatsApp para enviarlo, o copialo y mandalo al número de arriba.";
+});
+
+["veh", "ing"].forEach((id) => $(id).addEventListener("input", (e) => {
+  const v = parseNum(e.target.value); e.target.value = v ? v.toLocaleString("es-AR") : ""; renderSim();
+}));
+$("hero-elev").innerHTML = facade(CONFIG.modelos.find((x) => x.id === "refugio"), true);
+render();
+</script>
+
+</body>
+</html>
